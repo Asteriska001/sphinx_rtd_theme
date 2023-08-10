@@ -4,14 +4,15 @@ Configuration File Guide
 This configuration file is used for the framework targeting vulnerability detection tasks. The sections below detail the purpose of each configuration field.
 
 We will use a configuration file  ``regvd_reveal.yaml``  as an example
-.. code:: yaml
+
+.. code:: console
 
     #raw command line: --output_dir=./saved_models/regcn_l2_hs128_uni_ws5_lr5e4 --model_type=roberta --tokenizer_name=microsoft/graphcodebert-base --model_name_or_path=microsoft/graphcodebert-base \
     #	--do_eval --do_test --do_train --train_data_file=../dataset/train.jsonl --eval_data_file=../dataset/valid.jsonl --test_data_file=../dataset/test.jsonl \
     #	--block_size 400 --train_batch_size 128 --eval_batch_size 128 --max_grad_norm 1.0 --evaluate_during_training \
     #	--gnn ReGCN --learning_rate 5e-4 --epoch 100 --hidden_size 128 --num_GNN_layers 2 --format uni --window_size 5 \
     #	--seed 123456 2>&1 | tee $logp/training_log.txt
-    
+
     DEVICE          : cuda              # device used for training and evaluation (cpu, cuda, cuda0, cuda1, ...)
     SAVE_DIR        : 'output'         # output folder name used for saving the model, logs and inference results
 
@@ -183,3 +184,14 @@ TEST
 - **MODEL_PATH**: Trained model file path.
 - **FILE**: Filename or folder name.
 - **INPUT_SIZE**: Inference input size.
+
+Finally, the configuration can be used for model training or inference by simply entering the following command. 
+
+.. code:: python
+
+    #training
+    python tools/train.py --cfg regvd_reveal.yaml
+    #evaluation
+    python tools/val.py --cfg regvd_reveal.yaml
+    #inference
+    python tools/infer.py --cfg regvd_reveal.yaml
