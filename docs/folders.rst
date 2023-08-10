@@ -2,6 +2,7 @@ Folder structure
 ================
 
 .. code:: console
+    
     .
     ├── LICENSE
     ├── README.md
