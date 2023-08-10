@@ -1,4 +1,4 @@
-Train module References
+Training module References
 =================
 
 1. **Import Statements**: 
@@ -87,4 +87,4 @@ Train module References
    - Calls the main function for execution.
 
 
-The provided code is a typical deep learning training script, customized for a specific vulnerability detection task. It uses PyTorch as the deep learning framework, supporting distributed training with advanced features like mixed-precision training and custom data loading. The configuration is highly modular, allowing customization via a YAML file. Various utility functions are imported from other modules, reflecting a well-structured project.
+The code is a typical deep learning training script, customized for a specific vulnerability detection task. It uses PyTorch as the deep learning framework, supporting distributed training with advanced features like mixed-precision training and custom data loading. The configuration is highly modular, allowing customization via a YAML file. 

@@ -66,15 +66,15 @@ Development
 .. Hidden TOCs
 
 .. toctree::
-   :caption: Theme Documentation
+   :caption: Framework Documentation
    :maxdepth: 2
    :hidden:
 
    installing
    configuring
-   development
-   folders
    train
+   folders
+   development
    contributing
 
 .. toctree::
@@ -86,7 +86,7 @@ Development
 .. toctree::
     :maxdepth: 2
     :numbered:
-    :caption: Demo Documentation
+    :caption: Framework References
     :hidden:
 
     demo/structure
