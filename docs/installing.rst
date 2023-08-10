@@ -4,7 +4,7 @@ Installation
 How to install and use the framework
 --------------------------------
 
-Install the ``sphinx_rtd_theme`` package (or add it to your ``requirements.txt`` file):
+directly install steps:
 
 .. code:: console
 

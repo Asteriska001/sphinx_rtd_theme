@@ -45,6 +45,39 @@ The framework officially supports the following datasets:
     * - SARD/NVD
       - 
 
+.. _supported-preprocess/representations:
+
+Supported-preprocess/representations
+------------------------------------
+
+These tools and techniques are primarily used in program analysis, natural language processing, 
+and feature engineering, and help transform data into a form suitable for further analysis 
+and machine learning model training.
+
+.. list-table:: Supported preprocess methods
+    :header-rows: 1
+    :widths: 10
+
+     * - Normalize
+     * - PadSequence
+     * - OneHotEncode
+     * - Tokenize
+     * - VocabularyMapping
+     * - LengthNormalization
+     * - Shuffle
+
+
+.. list-table:: Supported representations
+   :widths: 50
+   :header-rows: 0
+
+   * - AST Graph extractor / AST Graph builder
+   * - LLVM Graph extractor / builder
+   * - Syntax extractor / builder
+   * - Vectorizers/word2vec
+   * - sent2vec
+
+
 this docs are constructing.
 
 Roadmap
