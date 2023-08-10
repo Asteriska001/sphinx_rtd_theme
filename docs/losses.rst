@@ -35,6 +35,7 @@ Each of the following classes defines a specific loss function:
    - Implements the Mean Squared Error Loss, commonly used for regression tasks.
 
 .. code:: python
+
     class MSELoss(nn.Module):
         def forward(self, input: Tensor, target: Tensor):
             return F.mse_loss(input, target)
@@ -44,6 +45,7 @@ Each of the following classes defines a specific loss function:
    - Implements the Binary Cross-Entropy Loss with Logits, used for binary classification tasks.
 
 .. code:: python
+
     class BCELoss(nn.Module):
         def forward(self, input: Tensor, target: Tensor):
             return F.binary_cross_entropy_with_logits(input, target)
@@ -53,6 +55,7 @@ Each of the following classes defines a specific loss function:
    - Implements the Negative Log-Likelihood Loss, used in conjunction with log softmax.
 
 .. code:: python
+
     class NLLLoss(nn.Module):
         def forward(self, input: Tensor, target: Tensor):
             return F.nll_loss(input, target)
@@ -62,6 +65,7 @@ Each of the following classes defines a specific loss function:
    - Implements the Kullback-Leibler Divergence Loss, used to measure how one probability distribution diverges from a second, expected probability distribution.
 
 .. code:: python
+
     class KLDivLoss(nn.Module):
         def forward(self, input: Tensor, target: Tensor):
             return F.kl_div(input, target)
@@ -71,6 +75,7 @@ Each of the following classes defines a specific loss function:
    - Implements the Hinge Embedding Loss, used often in ranking problems.
 
 .. code:: python
+
     class HingeLoss(nn.Module):
         def forward(self, input: Tensor, target: Tensor):
             return F.hinge_embedding_loss(input, target)
@@ -80,12 +85,14 @@ Each of the following classes defines a specific loss function:
    - Implements the Smooth L1 Loss or Huber Loss, which is less sensitive to outliers than the Mean Squared Error Loss.
 
 .. code:: python
+
     class SmoothL1Loss(nn.Module):
         def forward(self, input: Tensor, target: Tensor):
             return F.smooth_l1_loss(input, target)
 
 
 .. code:: python
+
     def get_loss(loss_fn_name: str = 'CrossEntropy'):
         assert loss_fn_name in __all__, f"Unavailable loss function name >> {loss_fn_name}.\nAvailable loss functions: {__all__}"
         return eval(loss_fn_name)()
