@@ -73,6 +73,7 @@ Development
    installing
    configuring
    development
+   folders
    contributing
 
 .. toctree::
