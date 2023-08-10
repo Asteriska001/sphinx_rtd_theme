@@ -1,27 +1,31 @@
-Read the Docs Sphinx Theme
+ASTERIA-Detection Docs
 ==========================
 
-This Sphinx_ theme was designed to provide a great reader experience for
-documentation users on both desktop and mobile devices. This theme is commonly
-used with projects on `Read the Docs`_ but can work with any Sphinx project.
+`ASTERIA Detection`_ aims to transform the landscape of security in computing systems 
+by providing a comprehensive framework for vulnerability detection. 
+This cutting-edge architecture relies on deep learning methodologies, 
+offering extensible and customizable solutions at the forefront of technology.
 
-.. _Sphinx: http://www.sphinx-doc.org
-.. _Read the Docs: http://www.readthedocs.org
+.. _ASTERIA-Detection: https://github.com/Asteriska001/ASTERIA-Detection 
 
-Using this theme
+
+User Guide
 ----------------
 
 :doc:`installing`
-    How to install this theme on your Sphinx project.
+    How to install this vulnerability detection framework.
 
 :doc:`configuring`
-    Theme configuration and customization options.
+    Task configuration and customization options.
 
-:ref:`supported-browsers`
-    Supported browser/operating system combinations.
+:ref:`supported-models`
+    Supported detection models, like Devign and VulDeePecker.
 
-:ref:`supported-dependencies`
-    Supported project dependencies, like Python and Sphinx.
+:ref:`supported-datasets`
+    Supported detection vulnerability datasets, like SARD/NVD and REVEAL.
+
+:ref:`supported-preprocess/representations`
+    Supported data preprocess methods and representations, like Normalization and Graph extractors.
 
 Development
 -----------

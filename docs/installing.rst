@@ -1,25 +1,34 @@
 Installation
 ============
 
-How to install and use the theme
+How to install and use the framework
 --------------------------------
 
 Install the ``sphinx_rtd_theme`` package (or add it to your ``requirements.txt`` file):
 
 .. code:: console
 
-    $ pip install sphinx_rtd_theme
+    $ git clone https://github.com/Asteriska001/astBugDetection
+    $ cd astBugDetection
+    $ pip install -e .
 
-In your Sphinx project's ``conf.py`` file, add ``sphinx_rtd_theme`` to the list of enabled extensions and as the active theme:
+open the Python interpreter  and run the following code to check:
 
 .. code:: python
 
-    extensions = [
-        ...
-        'sphinx_rtd_theme',
-    ]
+    from framework import show_models
+    show_models()
 
-    html_theme = "sphinx_rtd_theme"
+If the framework is installed successfully, you will see the following output
+
+.. code:: console
+        No.  Model Names
+    -----  -------------
+        1  GNNReGVD
+        2  Devign
+        3  LineVD
+        4  BLSTM
+        ......
 
 .. seealso::
     :ref:`supported-browsers`
