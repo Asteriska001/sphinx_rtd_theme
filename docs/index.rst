@@ -77,33 +77,34 @@ Development
    development
    contributing
 
-.. toctree::
-   :maxdepth: 1
-   :hidden:
-
-   changelog
-
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-    :caption: Framework References
+.. 
+    .. toctree::
+    :maxdepth: 1
     :hidden:
 
-    demo/structure
-    demo/demo
-    demo/lists_tables
-    demo/api
+    changelog
 
-.. toctree::
-    :maxdepth: 3
-    :numbered:
-    :caption: This is an incredibly long caption for a long menu
-    :hidden:
+    .. toctree::
+        :maxdepth: 2
+        :numbered:
+        :caption: Framework References
+        :hidden:
 
-    demo/long
-    
-.. toctree::
-    :maxdepth: 3
-    :caption: Breadcrumbs
+        demo/structure
+        demo/demo
+        demo/lists_tables
+        demo/api
 
-    demo/level1/index.rst
+    .. toctree::
+        :maxdepth: 3
+        :numbered:
+        :caption: This is an incredibly long caption for a long menu
+        :hidden:
+
+        demo/long
+        
+    .. toctree::
+        :maxdepth: 3
+        :caption: Breadcrumbs
+
+        demo/level1/index.rst
