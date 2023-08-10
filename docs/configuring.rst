@@ -1,236 +1,185 @@
-*************
-Configuration
-*************
+Configuration File Guide
+========================
 
-Theme options
-=============
+This configuration file is used for the framework targeting vulnerability detection tasks. The sections below detail the purpose of each configuration field.
 
-The following options can be defined in your project's ``conf.py`` file, using
-the :confval:`html_theme_options <sphinx:html_theme_options>` configuration option.
+We will use a configuration file  ``regvd_reveal.yaml``  as an example
+.. code:: yaml
 
-For example:
+    #raw command line: --output_dir=./saved_models/regcn_l2_hs128_uni_ws5_lr5e4 --model_type=roberta --tokenizer_name=microsoft/graphcodebert-base --model_name_or_path=microsoft/graphcodebert-base \
+    #	--do_eval --do_test --do_train --train_data_file=../dataset/train.jsonl --eval_data_file=../dataset/valid.jsonl --test_data_file=../dataset/test.jsonl \
+    #	--block_size 400 --train_batch_size 128 --eval_batch_size 128 --max_grad_norm 1.0 --evaluate_during_training \
+    #	--gnn ReGCN --learning_rate 5e-4 --epoch 100 --hidden_size 128 --num_GNN_layers 2 --format uni --window_size 5 \
+    #	--seed 123456 2>&1 | tee $logp/training_log.txt
+    
+    DEVICE          : cuda              # device used for training and evaluation (cpu, cuda, cuda0, cuda1, ...)
+    SAVE_DIR        : 'output'         # output folder name used for saving the model, logs and inference results
 
-.. code:: python
+    MODEL:                                    
+    NAME          : GNNReGVD                                        # name of the model you are using
+    BACKBONE      :
+    PARAMS:                                                   # model variant
+        encoder       : 
+        config        :
+        tokenizer     : 'roberta'
+        args          :
+            config_name : ''
+            gnn     : 'ReGGNN'
+            feature_dim_size: 768
+            hidden_size: 256
+            num_GNN_layers: 2
+            model_name_or_path: microsoft/graphcodebert-base
+            remove_residual: False
+            att_op: 'mul'
+            num_classes : 2
+            format: 'uni'
+            window_size: 5
+    PRETRAINED    : 'checkpoints/backbones/xx.pth'              # backbone model's weight 
 
-    html_theme_options = {
-        'analytics_id': 'G-XXXXXXXXXX',  #  Provided by Google in your dashboard
-        'analytics_anonymize_ip': False,
-        'logo_only': False,
-        'display_version': True,
-        'prev_next_buttons_location': 'bottom',
-        'style_external_links': False,
-        'vcs_pageview_mode': '',
-        'style_nav_header_background': 'white',
-        # Toc options
-        'collapse_navigation': True,
-        'sticky_navigation': True,
-        'navigation_depth': 4,
-        'includehidden': True,
-        'titles_only': False
-    }
+    DATASET:
+    NAME          : REVEAL                                         # dataset name to be trained with (camvid, cityscapes, ade20k)
+    ROOT          : 'data/ADEChallengeData2016'                         # dataset root path
+    PARAMS:
+        tokenizer   : 'roberta'
+        args        :
+        train_data_file: '../dataset/train.jsonl'
+        eval_data_file : '../dataset/valid.jsonl'
+        test_data_file : '../dataset/test.jsonl'
+        block_size     : 400
+        training_percent: 1.0
+    PREPROCESS:
+        ENABLE      : False #True
+        COMPOSE     : [ 
+                    "Normalize",
+                    "PadSequence",
+                    "OneHotEncode"
+            ]
 
-Table of contents options
--------------------------
+    TRAIN:
+    INPUT_SIZE    : 128
+    BATCH_SIZE    : 128               # batch size used to train
+    EPOCHS        : 2             # number of epochs to train
+    EVAL_INTERVAL : 50              # evaluation interval during training
+    AMP           : false           # use AMP in training
+    DDP           : false           # use DDP training
 
-The following options change how :rst:dir:`sphinx:toctree` directives generate
-documentation navigation.
+    LOSS:
+    NAME          : CrossEntropy          # loss function name (ohemce, ce, dice)
+    CLS_WEIGHTS   : false            # use class weights in loss calculation
 
-.. confval:: collapse_navigation
+    OPTIMIZER:
+    NAME          : adamw           # optimizer name
+    LR            : 0.001           # initial learning rate used in optimizer
+    WEIGHT_DECAY  : 0.01            # decay rate used in optimizer 
 
-    With this enabled, navigation entries are not expandable -- the ``[+]``
-    icons next to each entry are removed.
+    SCHEDULER:
+    NAME          : warmuppolylr    # scheduler name
+    POWER         : 0.9             # scheduler power
+    WARMUP        : 0              # warmup epochs used in scheduler
+    WARMUP_RATIO  : 0.1             # warmup ratio
+    
+    EVAL:
+    INPUT_SIZE    : 128
+    MODEL_PATH    : ''  # trained model file path
+    INPUT_SIZE    : 128                                                         # evaluation input size            
 
-    :type: boolean
-    :default: ``True``
-
-    .. note::
-        Setting :confval:`collapse_navigation` to ``False`` and using a high value
-        for :confval:`navigation_depth` on projects with many files and a deep file
-        structure can cause long compilation times and can result in HTML files that
-        are significantly larger in file size.
-
-.. confval:: sticky_navigation
-
-    Scroll the navigation with the main page content as you scroll the page.
-
-    :type: boolean
-    :default: ``True``
-
-.. confval:: navigation_depth
-
-    The maximum depth of the table of contents tree. Set
-    this to ``-1`` to allow unlimited depth.
-
-    :type: integer
-    :default: ``4``
-
-.. confval:: includehidden
-
-    Specifies if the navigation includes hidden table(s) of contents -- that is,
-    any :rst:dir:`sphinx:toctree` directive that is marked with the ``:hidden:``
-    option.
-
-    :type: boolean
-    :default: ``True``
-
-.. confval:: titles_only
-
-    When enabled, page subheadings are not included in the
-    navigation.
-
-    :type: boolean
-    :default: False
-
-.. _table of contents configuration options: http://www.sphinx-doc.org/en/stable/templating.html#toctree
-
-
-..
-    TODO
-    .
-    HTML context options
-    ~~~~~~~~~~~~~~~~~~~~
+    TEST:
+    MODEL_PATH    : ''  # trained model file path
+    FILE          : 'assests/codes'                                                         # filename or foldername 
+    INPUT_SIZE    : 128                                                            # inference input size
 
 
-Miscellaneous options
+Device Configuration
+--------------------
+
+- **DEVICE**: The device used for training and evaluation (e.g., cpu, cuda, cuda0, cuda1, etc.).
+- **SAVE_DIR**: Output folder name used for saving the model, logs, and inference results.
+
+Model Configuration
+-------------------
+
+MODEL
+^^^^^^
+
+- **NAME**: The name of the model you are using.
+- **BACKBONE**: The backbone part of the model.
+- **PARAMS**: Model parameters.
+    - **encoder**: Encoder.
+    - **config**: Configuration.
+    - **tokenizer**: Tokenizer for handling text.
+    - **args**: Other arguments.
+- **PRETRAINED**: Pretrained weights path for the backbone model.
+
+Dataset Configuration
 ---------------------
 
-.. confval:: analytics_id
+DATASET
+^^^^^^^
 
-    If specified, Google Analytics' `gtag.js`_ is included in your pages.
-    Set the value to the ID provided to you by google (like ``UA-XXXXXXX`` or ``G-XXXXXXXXXX``).
+- **NAME**: The dataset name to be trained with.
+- **ROOT**: The root path of the dataset.
+- **PARAMS**: Other parameters.
+- **PREPROCESS**: Preprocessing parameters.
 
-    :type: string
+Training Configuration
+----------------------
 
-    .. _gtag.js: https://developers.google.com/gtagjs
+TRAIN
+^^^^^
 
-.. confval:: analytics_anonymize_ip
+- **INPUT_SIZE**: Input size.
+- **BATCH_SIZE**: Batch size used to train.
+- **EPOCHS**: Number of epochs to train.
+- **EVAL_INTERVAL**: Evaluation interval during training.
+- **AMP**: Whether to use AMP in training.
+- **DDP**: Whether to use Distributed Data Parallel (DDP) training.
 
-    Anonymize visitor IP addresses in Google Analytics.
+Loss Configuration
+------------------
 
-   :type: boolean
-   :default: ``False``
+LOSS
+^^^^
 
-.. confval:: canonical_url
+- **NAME**: Loss function name.
+- **CLS_WEIGHTS**: Whether to use class weights in loss calculation.
 
-    This will specify a `canonical URL`_ meta link element to tell search
-    engines which URL should be ranked as the primary URL for your
-    documentation. This is important if you have multiple URLs that your
-    documentation is available through. The URL points to the root path of the
-    documentation and requires a trailing slash.
+Optimizer Configuration
+-----------------------
 
-    :type: URL
+OPTIMIZER
+^^^^^^^^^
 
-    .. deprecated:: 0.6.0
+- **NAME**: Optimizer name.
+- **LR**: Initial learning rate used in the optimizer.
+- **WEIGHT_DECAY**: Decay rate used in the optimizer.
 
-       Use :confval:`sphinx:html_baseurl` instead.
+Scheduler Configuration
+-----------------------
 
-    .. _canonical URL: https://en.wikipedia.org/wiki/Canonical_link_element
+SCHEDULER
+^^^^^^^^^
 
-.. confval:: display_version
+- **NAME**: Scheduler name.
+- **POWER**: Scheduler power.
+- **WARMUP**: Warmup epochs used in the scheduler.
+- **WARMUP_RATIO**: Warmup ratio.
 
-    If ``True``, the version number is shown at the top of the sidebar.
+Evaluation Configuration
+------------------------
 
-    :type: boolean
-    :default: ``True``
+EVAL
+^^^^
 
-.. confval:: logo_only
+- **INPUT_SIZE**: Input size.
+- **MODEL_PATH**: Trained model file path.
+- **INPUT_SIZE**: Evaluation input size.
 
-    Only display the logo image, do not display the project name at the top of
-    the sidebar
+Testing Configuration
+---------------------
 
-    :type: boolean
-    :default: ``False``
+TEST
+^^^^
 
-.. confval:: prev_next_buttons_location
-
-    Location to display :guilabel:`Next` and :guilabel:`Previous` buttons. This
-    can be either ``bottom``, ``top``, ``both`` , or ``None``.
-
-    :type: string
-    :default: ``bottom``
-
-.. confval:: style_external_links
-
-    Add an icon next to external links.
-
-    :type: boolean
-    :default: ``False``
-
-.. confval:: vcs_pageview_mode
-
-    Changes how to view files when using ``display_github``, ``display_gitlab``,
-    etc.  When using GitHub or GitLab this can be: ``blob`` (default), ``edit``,
-    or ``raw``. On Bitbucket, this can be either: ``view`` (default) or
-    ``edit``.
-
-    :type: string
-    :default: ``blob`` or ``view``
-
-.. confval:: style_nav_header_background
-
-    Changes the background of the search area in the navigation bar. The value
-    can be anything valid in a CSS `background` property.
-
-    :type: string
-    :default: ``#2980B9``
-
-
-File-wide metadata
-==================
-
-The following options can be used as :ref:`file-wide metadata
-<sphinx:metadata>`:
-
-.. confval:: github_url
-
-    Force the :guilabel:`Edit on GitHub` button to use the configured URL.
-
-.. confval:: bitbucket_url
-
-    Force the :guilabel:`Edit on Bitbucket` button to use the configured URL.
-
-.. confval:: gitlab_url
-
-    Force the :guilabel:`Edit on GitLab` button to use the configured URL.
-
-Other configuration
-===================
-
-Adding a logo
--------------
-
-Using the Sphinx standard option :py:confval:`html_logo <sphinx:html_logo>`,
-you can set an image file to be used as a logo at the top of the sidebar. The
-theme option :py:confval:`logo_only` also allows for *only* the logo to be shown
-at the top of the sidebar.
-
-Adding custom CSS or Javascript
--------------------------------
-
-Adding custom CSS or Javascript can help you alter the look and feel of this
-theme without forking the theme for local use.
-
-In order to add custom CSS or Javascript without disrupting the existing theme
-files, you can :doc:`add files to be included in your documentation output
-<rtd:guides/adding-custom-css>`.
-
-How the table of contents displays
-==================================
-
-Currently the left menu will build based upon any ``toctree`` directives defined
-in your source files.  It outputs 4 levels of depth by default, to allow for
-quick navigation through topics. If no TOC trees are defined, Sphinx's default
-behavior is to use the page headings instead.
-
-It's important to note that if you don't follow the same styling for your reST
-headings across your documents, the TOC tree will build incorrectly, and the
-resulting menu might not show the correct depth when it renders.
-
-Also note that by default the table of contents is set with
-``includehidden=True``. This allows you to set a hidden TOC in your index file
-with the :ref:`:hidden: <sphinx:toctree-directive>` property that will allow you
-to build a TOC without it rendering in your index.
-
-By default, the navigation will "stick" to the screen as you scroll. However if
-your TOC is not tall enough, it will revert to static positioning. To disable the
-sticky navigation altogether, change the :confval:`sticky_navigation` theme option.
+- **MODEL_PATH**: Trained model file path.
+- **FILE**: Filename or folder name.
+- **INPUT_SIZE**: Inference input size.
