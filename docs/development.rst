@@ -1,81 +1,51 @@
 Development
 ===========
 
-The theme developers follow the guidelines below for development and release
-planning. Documentation authors can decide which theme release works best for
-their project based on required browser/operating system combinations or
-dependency support.
+The framework developers follow the guidelines below for development and release planning. 
 
-.. _supported-browsers:
+.. _supported-models:
 
-Supported browsers
+Supported Models
 ------------------
 
-Official browser support is determined by the most popular browser/operating
-system combinations in our pageview analytics. Officially supported combinations
-are commonly tested during development, and are always tested before final
-release of a new version of the theme.
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
 
-Older releases of supported combinations, and some less common combinations, are
-considered partially supported. This means that we do not consistently test
-these combinations, however we do expect user experience to be comparable with
-supported combinations.
+   * - Model Name
+     - Description
+   * - Devign
+     - https://github.com/epicosy/devign
+   * - ReGVD
+     - ReGVD(Region-based Graph Vulnerability Detection) https://github.com/daiquocnguyen/GNN-ReGVD
+   * - LineVul
+     - https://github.com/awsm-research/LineVul/
+   * - VulDeePecker
+     - VulDeePecker是一种深度学习系统，能够自动检测给定源代码中的漏洞，通过长短时记忆网络（LSTM）进行特征学习。
+   * - TextCNN
+     - TextCNN是一种采用卷积神经网络（CNN）对文本数据进行处理的模型，可应用于代码的漏洞检测，通过文本特征实现。
+   * - VulCNN
+     - VulCNN是一种专门针对漏洞检测的卷积神经网络模型，通过分析代码的结构和语义信息来识别潜在的安全漏洞。
 
-.. csv-table:: Supported browser combinations
-    :widths: 6, 12, 4
-    :header-rows: 1
-    :file: supported-browsers.csv
+.. _supported-datasets:
 
-.. versionadded:: 1.0
-    Supported browser and operating system combinations added
-
-There are several browser/operating system combinations that are not supported
-by the theme developers at all. Unsupported combinations do not receive testing
-or development, and we likely won't accept major contributions for these
-combinations.
-
-Unsupported browser/operating system combinations include:
-
-Internet Explorer (any OS, versions <=10)
-    **Unsupported.** IE11 is the last partially supported version. We do no
-    testing on prior versions.
-
-Internet Explorer (any OS, version 11)
-    We currently only partially support IE11, and only test for major bugs.
-    Support will be removed in the :ref:`roadmap-release-2.0.0` release.
-
-Opera (any OS, any version)
-    **Community support only.** We do not receive enough traffic with this
-    browser to officially support it in testing and development.
-
-.. _supported-dependencies:
-
-Supported dependencies
+Supported datasets
 ----------------------
 
-The theme officially supports the following dependencies in your Sphinx project:
+The framework officially supports the following datasets:
 
-.. list-table:: Supported dependencies
+.. list-table:: Supported datasets
     :header-rows: 1
     :widths: 10, 10
 
-    * - Dependency
-      - Versions
-    * - Python
-      - 2.7 or 3.6 or greater
-    * - Sphinx
-      - 1.7 up to at least 4.1
-    * - docutils
-      - Up to 0.17
+    * - Dataset
+      - Description
+    * - REVEAL
+      - 
+    * - SARD/NVD
+      - 
 
-.. versionadded:: 1.0
-    Sphinx 4.0 support added
-
-.. deprecated:: 1.0
-    Sphinx 1.6 support removed
-
-.. versionadded:: 1.0
-    docutils 0.17 support added
+this docs are constructing.
 
 Roadmap
 -------

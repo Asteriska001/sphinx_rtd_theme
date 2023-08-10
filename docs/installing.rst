@@ -22,6 +22,7 @@ open the Python interpreter  and run the following code to check:
 If the framework is installed successfully, you will see the following output
 
 .. code:: console
+
         No.  Model Names
     -----  -------------
         1  GNNReGVD
@@ -31,26 +32,21 @@ If the framework is installed successfully, you will see the following output
         ......
 
 .. seealso::
-    :ref:`supported-browsers`
-        Officially supported and tested browser/operating system combinations
+    :ref:`supported-models`
+        Supported detection models, like Devign and VulDeePecker.
 
-    :ref:`supported-dependencies`
-        Officially Supported versions of Python, Sphinx, and other dependencies.
+    :ref:`supported-datasets`
+        Supported detection vulnerability datasets, like SARD/NVD and REVEAL.
 
-
-.. note::
-
-   Adding this theme as an extension is what enables localization of theme
-   strings in your translated output. If these strings are not translated in
-   your output, either we lack the localized strings for your locale, or you
-   are using an old version of the theme.
+    :ref:`supported-preprocess/representations`
+        Supported data preprocess methods and representations, like Normalization and Graph extractors.
 
    ..
       comment about this note: it's possibly not necessary to add the theme as an extension.
       Rather, this is an issue caused by setting html_theme_path.
       See: https://github.com/readthedocs/readthedocs.org/pull/9654
 
-
+this docs are constructing.
 .. _howto_upgrade:
 
 How to upgrade

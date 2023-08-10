@@ -9,6 +9,15 @@ offering extensible and customizable solutions at the forefront of technology.
 .. _ASTERIA-Detection: https://github.com/Asteriska001/ASTERIA-Detection 
 
 
+Key Features
+-----------------
+**Extensible Resourceful Intelligence**: Incorporates AI and machine learning algorithms that can be easily extended and adapted to various security testing scenarios.
+**Rich and Diverse Data Preprocessing Mechanisms**: Including code representation methods, graph neural networks, and sequence representation methods, allowing the free combination of preprocessing steps and adjustment of the processing flow.
+**Adaptable Framework**: Tailored to meet individual requirements with built-in support for various vulnerability detection models.
+**Abundant Datasets**: Offers a wide variety of datasets to train and test the models, providing a versatile environment for experimentation.
+**Ease of Use**: Designed with the user in mind, ASTERIA offers an intuitive interface that makes implementing and modifying state-of-the-art (SOTA) vulnerability detection models a breeze.
+
+
 User Guide
 ----------------
 
