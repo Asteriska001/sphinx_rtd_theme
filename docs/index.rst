@@ -74,6 +74,7 @@ Development
    configuring
    development
    folders
+   train
    contributing
 
 .. toctree::
