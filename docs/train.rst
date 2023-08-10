@@ -1,4 +1,4 @@
-Code Explanation
+Train module References
 =================
 
 1. **Import Statements**: 
@@ -31,31 +31,31 @@ Code Explanation
     from framework.utils.utils import fix_seeds, setup_cudnn, cleanup_ddp, setup_ddp
     from val import evaluate
 
-1. **Ordered Loading of YAML files**: 
+2. **Ordered Loading of YAML files**: 
    - This section provides a custom function to load YAML files in an ordered way, preserving the order of elements in dictionaries.
 
-.. code::python
+    .. code:: python
 
-    from collections import OrderedDict
+        from collections import OrderedDict
 
-    def ordered_load(stream, Loader=yaml.SafeLoader, object_pairs_hook=OrderedDict):
-        class OrderedLoader(Loader):
-            pass
-        def construct_mapping(loader, node):
-            loader.flatten_mapping(node)
-            return object_pairs_hook(loader.construct_pairs(node))
-        OrderedLoader.add_constructor(
-            yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
-            construct_mapping)
-        return yaml.load(stream, OrderedLoader)
+        def ordered_load(stream, Loader=yaml.SafeLoader, object_pairs_hook=OrderedDict):
+            class OrderedLoader(Loader):
+                pass
+            def construct_mapping(loader, node):
+                loader.flatten_mapping(node)
+                return object_pairs_hook(loader.construct_pairs(node))
+            OrderedLoader.add_constructor(
+                yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG,
+                construct_mapping)
+            return yaml.load(stream, OrderedLoader)
 
 
-1. **Main Function (main)**:
+3. **Main Function (main)**:
    - The core function of the script responsible for preparing and training the model.
 
-.. code::python
+    .. code:: python
 
-    def main(cfg, gpu, save_dir):
+        def main(cfg, gpu, save_dir):
 
 
    a. **Initialization**: Retrieves the configuration, sets the device, splits the configuration into specific parts, and sets the number of epochs and learning rate.
@@ -81,12 +81,10 @@ Code Explanation
    h. **Logging**: 
       - Logs the best accuracy and total training time.
 
-1. **Script Execution (if __name__ == '__main__')**:
+3. **Script Execution (if __name__ == '__main__')**:
    - Defines and parses command-line arguments.
    - Loads the configuration file, fixes seeds, and sets up CUDA.
    - Calls the main function for execution.
 
-Conclusion
-----------
 
 The provided code is a typical deep learning training script, customized for a specific vulnerability detection task. It uses PyTorch as the deep learning framework, supporting distributed training with advanced features like mixed-precision training and custom data loading. The configuration is highly modular, allowing customization via a YAML file. Various utility functions are imported from other modules, reflecting a well-structured project.
