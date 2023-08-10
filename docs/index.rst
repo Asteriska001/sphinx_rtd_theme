@@ -75,6 +75,7 @@ Development
    train
    folders
    development
+   losses
    contributing
 
 .. 
