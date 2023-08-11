@@ -78,6 +78,7 @@ Development
    losses
    metrics
    schedulers
+   GNNReGVD
    contributing
 
 .. 
