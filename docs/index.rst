@@ -76,6 +76,7 @@ Development
    folders
    development
    losses
+   metrics
    contributing
 
 .. 
