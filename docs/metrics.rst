@@ -1,4 +1,4 @@
-**Metrics.py Documentation**
+Metrics.py Documentation
 ===========================
 
 The `Metrics.py` module is designed for evaluating model predictions in the context of a deep learning framework aimed at vulnerability detection. It offers a variety of metrics, primarily used in classification tasks, to determine the performance of the model.
@@ -29,7 +29,8 @@ Class Definition: Metrics
 
 This class provides a suite of methods for calculating various performance metrics, including accuracy, F1-score, recall, precision, ROC AUC score, and PR AUC score.
 
-### Initializer: `__init__`
+Initializer: `__init__`
+------------------------
 
 .. code-block:: python
 
@@ -43,7 +44,8 @@ Initializes the `Metrics` object with a specified number of classes and a device
 - `num_classes` (*int*): The number of classes in the classification task.
 - `device` (*torch.device*): The device (CPU or CUDA) to allocate tensors on.
 
-### Method: `update`
+Method: `update`
+----------------
 
 .. code-block:: python
 
@@ -57,7 +59,8 @@ Updates internal data structures with new model predictions and ground truth tar
 - `pred` (*Tensor*): Model predictions.
 - `target` (*Tensor*): Ground truth labels.
 
-### Metric Calculation Methods:
+Metric Calculation Methods:
+---------------------------
 
 1. **`compute_acc`**:
 
@@ -117,5 +120,3 @@ For this module:
 - Scikit-learn Metrics: https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
 
 ---
-
-This concludes the comprehensive documentation of the `Metrics.py` module.
