@@ -77,6 +77,7 @@ Development
    development
    losses
    metrics
+   schedulers
    contributing
 
 .. 
