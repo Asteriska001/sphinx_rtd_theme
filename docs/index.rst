@@ -79,6 +79,11 @@ Development
    metrics
    schedulers
    GNNReGVD
+   representations/represent_common
+   representations/ast_graphs
+   representations/llvm_graph
+   representations/llvm_seq
+   representations/syntax_seq
    contributing
 
     .. toctree::
@@ -93,7 +98,7 @@ Development
         representations/llvm_seq
         representations/syntax_seq
 
-        
+
 .. 
     .. toctree::
     :maxdepth: 1
