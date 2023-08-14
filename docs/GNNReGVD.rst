@@ -93,6 +93,7 @@ This is a Graph Neural Network model for vulnerability detection.
 ----------
 
 **Available Interface Functions**:
+
 1. `Model.__init__(encoder, config, tokenizer, args)`
    
 2. `Model.forward(input_ids=None, labels=None)`
