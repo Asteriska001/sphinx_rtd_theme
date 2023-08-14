@@ -81,6 +81,19 @@ Development
    GNNReGVD
    contributing
 
+    .. toctree::
+        :maxdepth: 2
+        :numbered:
+        :caption: Representation Module References
+        :hidden:
+
+        representations/represent_common
+        representations/ast_graphs
+        representations/llvm_graph
+        representations/llvm_seq
+        representations/syntax_seq
+
+        
 .. 
     .. toctree::
     :maxdepth: 1
